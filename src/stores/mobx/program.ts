@@ -5,7 +5,7 @@ import { makeAutoObservable, runInAction } from 'mobx';
 
 const programStore = makeAutoObservable({
     selectProgramInfo: {} as ProgramDataType,
-    programList: [],
+    programList: [] as Array<ProgramDataType>,
     async getProgramList() {
         try {
             this.programList = await getProgramListApi();

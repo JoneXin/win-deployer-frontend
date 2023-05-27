@@ -12,31 +12,38 @@ const DashBoard: FC = () => {
                 <Row style={{ marginTop: 20 }}>
                     <Col span={12}>
                         <span className="programKey">程序名称:</span>
-                        <span className="programValue">{programStore.selectProgramInfo.name}</span>
+                        <span className="programValue">{programStore.selectProgramInfo.name ?? ''}</span>
                     </Col>
                     <Col span={6}>
                         <span className="programKey">最大重启次数:</span>
-                        <span className="programValue">{programStore.selectProgramInfo.maxRestarts}</span>
+                        <span className="programValue">{programStore.selectProgramInfo.maxRestarts ?? '~'}</span>
                     </Col>
                     <Col span={6}>
                         <span className="programKey">最大重试次数:</span>
-                        <span className="programValue">{programStore.selectProgramInfo.maxRetries}</span>
+                        <span className="programValue">{programStore.selectProgramInfo.maxRetries ?? '~'}</span>
+                    </Col>
+                </Row>
+
+                <Row style={{ marginTop: 20 }}>
+                    <Col span={24}>
+                        <span className="programKey">发布路径:</span>
+                        <span className="programValue">{programStore.selectProgramInfo.deployPath ?? '~'}</span>
                     </Col>
                 </Row>
                 <Row style={{ marginTop: 20 }}>
                     <Col span={24}>
                         <span className="programKey">入口文件路径:</span>
-                        <span className="programValue">{programStore.selectProgramInfo.script}</span>
+                        <span className="programValue">{programStore.selectProgramInfo.script ?? '~'}</span>
                     </Col>
                 </Row>
                 <Row style={{ marginTop: 20 }}>
                     <Col span={6}>
                         <span className="programKey">重启时间延迟:</span>
-                        <span className="programValue">{programStore.selectProgramInfo.wait}</span>
+                        <span className="programValue">{programStore.selectProgramInfo.wait ?? '~'}</span>
                     </Col>
                     <Col span={6}>
                         <span className="programKey">重启时间增量:</span>
-                        <span className="programValue">{programStore.selectProgramInfo.grow}</span>
+                        <span className="programValue">{programStore.selectProgramInfo.grow ?? '~'}</span>
                     </Col>
                 </Row>
             </div>
