@@ -28,6 +28,7 @@ const RenModal: FC = (props: any, ref: any) => {
     return (
         <>
             <Modal
+                maskClosable={props.maskClosable ?? false}
                 open={open}
                 title={props.title}
                 onOk={handleOk}
@@ -36,18 +37,6 @@ const RenModal: FC = (props: any, ref: any) => {
                 okText="确定"
                 cancelText="取消"
                 footer={props.footer}
-
-                // [
-                //     <Button key="back" onClick={handleCancel}>
-                //         Return
-                //     </Button>,
-                //     <Button key="submit" type="primary" loading={loading} onClick={handleOk}>
-                //         Submit
-                //     </Button>,
-                //     <Button key="link" href="https://google.com" type="primary" loading={loading} onClick={handleOk}>
-                //         Search on Google
-                //     </Button>,
-                // ]
             >
                 {props.children}
             </Modal>

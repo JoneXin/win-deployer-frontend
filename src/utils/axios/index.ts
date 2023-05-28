@@ -22,10 +22,10 @@ service.interceptors.response.use(
         const res = response.data;
 
         if (res.code !== 200) {
+            console.log(2232);
+
             // throw other
-            const error = new Error(res.message || UNKNOWN_ERROR) as Error & { code: any };
-            error.code = res.code;
-            return Promise.reject(error);
+            throw new Error(res.message);
         } else {
             return res;
         }
@@ -33,9 +33,9 @@ service.interceptors.response.use(
     error => {
         // 处理 422 或者 500 的错误异常提示
         const errMsg = error?.response?.data?.message ?? UNKNOWN_ERROR;
-        // $message.error(errMsg);
-        error.message = errMsg;
-        return Promise.reject(error);
+
+        console.log(errMsg);
+        throw new Error(errMsg);
     },
 );
 
@@ -46,10 +46,6 @@ service.interceptors.response.use(
  * @param data - request data or params
  */
 export const request = async <T = any>(config: AxiosRequestConfig): Promise<T> => {
-    try {
-        const res = await service.request(config);
-        return res.data;
-    } catch (error: any) {
-        return Promise.reject(error);
-    }
+    const res = await service.request(config);
+    return res.data;
 };

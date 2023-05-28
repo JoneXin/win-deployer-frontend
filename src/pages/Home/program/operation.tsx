@@ -4,6 +4,8 @@ import react, { FC, useState } from 'react';
 import { ProgramVersion, programVersionColumns, tabItems } from './constan';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import NewDeployer from './newdeployer';
+import StatusManage from './statusmanage';
+import ConfigManage from './configmanage';
 
 const ProgramOperation: FC = (props: any) => {
     const versionBack = () => {
@@ -57,6 +59,18 @@ const ProgramOperation: FC = (props: any) => {
             return {
                 ...tab,
                 children: <VersionMangement></VersionMangement>,
+            };
+        }
+        if (tab.label == '状态管理') {
+            return {
+                ...tab,
+                children: <StatusManage></StatusManage>,
+            };
+        }
+        if (tab.label == '配置管理') {
+            return {
+                ...tab,
+                children: <ConfigManage></ConfigManage>,
             };
         }
         return tab;

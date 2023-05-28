@@ -6,6 +6,11 @@ export type ProgramVersion = {
     deployTime: string;
     isCurrent: boolean;
 };
+
+export type ProgramConfigType = {
+    configContent: string;
+    configPath: string;
+};
 export interface ProgramDataType {
     key: React.Key;
     name: string;
@@ -18,9 +23,10 @@ export interface ProgramDataType {
     wait: number;
     deployPath: string;
     versions: Array<ProgramVersion>;
+    config: Array<ProgramConfigType>;
 }
 
-const statusColor = {
+export const statusColor = {
     运行中: 'success',
     停止: 'error',
     未安装: 'warning',

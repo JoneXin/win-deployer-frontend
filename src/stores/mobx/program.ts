@@ -9,7 +9,7 @@ const programStore = makeAutoObservable({
     async getProgramList() {
         try {
             this.programList = await getProgramListApi();
-            this.selectProgramInfo = this.programList[0];
+            this.selectProgramInfo = this.programList[0] || {};
         } catch (error) {
             message.error(error as any);
         }
