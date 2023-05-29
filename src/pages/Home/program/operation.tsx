@@ -6,6 +6,7 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 import NewDeployer from './newdeployer';
 import StatusManage from './statusmanage';
 import ConfigManage from './configmanage';
+import LogManage from './logmanage';
 
 const ProgramOperation: FC = (props: any) => {
     const versionBack = () => {
@@ -71,6 +72,12 @@ const ProgramOperation: FC = (props: any) => {
             return {
                 ...tab,
                 children: <ConfigManage></ConfigManage>,
+            };
+        }
+        if (tab.label == '日志管理') {
+            return {
+                ...tab,
+                children: <LogManage></LogManage>,
             };
         }
         return tab;
