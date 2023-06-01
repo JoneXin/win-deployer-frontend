@@ -56,7 +56,7 @@ const DashBoard: FC = () => {
                             {
                                 label: (
                                     <div style={{ padding: 4 }}>
-                                        <div>Spring</div>
+                                        <div>cpu rate</div>
                                     </div>
                                 ),
                                 value: 'spring',
@@ -64,7 +64,7 @@ const DashBoard: FC = () => {
                             {
                                 label: (
                                     <div style={{ padding: 4 }}>
-                                        <div>Summer</div>
+                                        <div>memory rate</div>
                                     </div>
                                 ),
                                 value: 'summer',
@@ -72,7 +72,7 @@ const DashBoard: FC = () => {
                             {
                                 label: (
                                     <div style={{ padding: 4 }}>
-                                        <div>Autumn</div>
+                                        <div>disk rate</div>
                                     </div>
                                 ),
                                 value: 'autumn',
@@ -80,7 +80,7 @@ const DashBoard: FC = () => {
                             {
                                 label: (
                                     <div style={{ padding: 4 }}>
-                                        <div>Winter</div>
+                                        <div>network rate</div>
                                     </div>
                                 ),
                                 value: 'winter',

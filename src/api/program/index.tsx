@@ -8,12 +8,22 @@ export type ProgramConfigType = {
 export type NewProgramInfo = {
     config: Array<ProgramConfigType>;
     deployPath: string;
-    desc: string;
-    execPath: string;
-    programPkg: string;
-    versionName: string;
 };
 
+export type UpdateProgramInfo = {
+    desc: string;
+    programPkg: string;
+    versionName: string;
+    name: string;
+};
+
+export type LogsReaderConf = {
+    logsPath: string;
+    startTime: string;
+    endTime: string;
+    pageSize: number;
+    pageNumber: number;
+};
 export async function getProgramListApi() {
     return await request({
         url: 'program',
@@ -64,6 +74,30 @@ export async function uninstallServiceApi(name: string) {
 export async function updateConfigApi(data: { name: string; version: string; config: Array<ProgramConfigType> }) {
     return await request({
         url: 'program/update_config',
+        method: 'post',
+        data,
+    });
+}
+
+export async function getProgramLogsApi(data: LogsReaderConf) {
+    return await request({
+        url: 'program/logs',
+        method: 'post',
+        data,
+    });
+}
+
+export async function updateRunningAppConfApi(data: { name: string; deployPath: string; config: Array<ProgramConfigType> }) {
+    return await request({
+        url: 'program/update_running_config',
+        method: 'post',
+        data,
+    });
+}
+
+export async function updateProgramVersionApi(data: UpdateProgramInfo) {
+    return await request({
+        url: 'program/update_program',
         method: 'post',
         data,
     });

@@ -1,9 +1,7 @@
 import { observer } from 'mobx-react-lite';
-import { FC, useEffect, useRef, useState } from 'react';
-import { Button, Input, message, Spin, Table, Tabs } from 'antd';
-import type { ColumnsType } from 'antd/es/table';
-import { ProgramDataType, programColumns, tabItems } from './constan';
-import { addProgramListApi, getProgramListApi } from '@/api/program';
+import { FC, useRef, useState } from 'react';
+import { Button, Input, message, Table } from 'antd';
+import { ProgramDataType, programColumns } from './constan';
 import { programStore } from '@/stores/mobx';
 import './index.less';
 import RenModal from '@/components/RenModal';

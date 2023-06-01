@@ -26,29 +26,60 @@
 }
 
 
-.new-deployer-nav{
+.new-deployer-nav {
     display: flex;
     align-items: center;
     height: 50px;
     border-bottom: 1px solid rgba(128, 128, 128, 0.199);
 }
-.status-operate{
+
+.status-operate {
     padding: 10px;
+
     >p {
         font-weight: 600;
     }
-    .operator{
+
+    .operator {
         display: flex;
         height: 60px;
         margin: 10px;
         align-items: center;
+
         button {
             margin-left: 15px;
         }
     }
 }
-.new-deployer-form{
+
+.new-deployer-form {
     display: flex;
     align-items: center;
     // justify-content: center;
+}
+
+.logs {
+    height: 500px;
+    overflow: auto
+}
+
+.logs-search {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.199);
+    margin: 5px 0;
+
+    >input {
+        width: 200px;
+    }
+
+    >span {
+        width: 50px;
+    }
+}
+
+.footer-logs {
+    display: flex;
+    justify-content: end;
+    margin: 10px;
 }

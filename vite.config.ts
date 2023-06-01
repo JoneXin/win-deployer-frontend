@@ -6,14 +6,14 @@ import vitePluginImp from 'vite-plugin-imp';
 export default defineConfig({
     plugins: [
         react(),
-        vitePluginImp({
-            libList: [
-                {
-                    libName: 'antd',
-                    style: name => `antd/es/${name}/style/css.js`,
-                },
-            ],
-        }),
+        // vitePluginImp({
+        //     libList: [
+        //         {
+        //             libName: 'antd',
+        //             style: name => `antd/es/${name}/style/css.js`,
+        //         },
+        //     ],
+        // }),
     ],
     resolve: {
         alias: [
@@ -37,7 +37,7 @@ export default defineConfig({
             '/api': {
                 target: `http://127.0.0.1:8888`,
                 changeOrigin: true,
-                rewrite: path => path.replace(/^\/api/, ''),
+                // rewrite: path => path.replace(/^\/api/, ''),
             },
         },
         host: true,
