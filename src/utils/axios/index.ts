@@ -4,7 +4,7 @@ const UNKNOWN_ERROR = '未知错误，请重试';
 
 const service = axios.create({
     baseURL: '/api',
-    timeout: 60000,
+    timeout: 360000,
 });
 
 service.interceptors.request.use(
