@@ -1,6 +1,6 @@
 {
     "singleQuote": true,
-    "printWidth": 200,
+    "printWidth": 120,
     "tabWidth": 4,
     "useTabs": false,
     "indent": 4,

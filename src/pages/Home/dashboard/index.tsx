@@ -1,11 +1,14 @@
 import { observer } from 'mobx-react-lite';
-import { FC, useEffect, useRef } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { Col, Divider, Row, Segmented, Tabs } from 'antd';
 import type { TabsProps } from 'antd';
 import './index.less';
 import { programStore } from '@/stores/mobx';
+import MonitorCharts from './monitor';
 
 const DashBoard: FC = () => {
+    const [monitorType, setMonitorType] = useState<'cpu' | 'memory'>('cpu');
+
     return (
         <div>
             <div className="desc">
@@ -51,44 +54,31 @@ const DashBoard: FC = () => {
             <div className="map">
                 <div className="map-type">
                     <Segmented
+                        onChange={(mode: any) => setMonitorType(mode)}
                         style={{ margin: '0px 5px' }}
                         options={[
                             {
                                 label: (
                                     <div style={{ padding: 4 }}>
-                                        <div>cpu rate</div>
+                                        <div>CPU 使用率</div>
                                     </div>
                                 ),
-                                value: 'spring',
+                                value: 'cpu',
                             },
                             {
                                 label: (
                                     <div style={{ padding: 4 }}>
-                                        <div>memory rate</div>
+                                        <div>内存使用率</div>
                                     </div>
                                 ),
-                                value: 'summer',
-                            },
-                            {
-                                label: (
-                                    <div style={{ padding: 4 }}>
-                                        <div>disk rate</div>
-                                    </div>
-                                ),
-                                value: 'autumn',
-                            },
-                            {
-                                label: (
-                                    <div style={{ padding: 4 }}>
-                                        <div>network rate</div>
-                                    </div>
-                                ),
-                                value: 'winter',
+                                value: 'memory',
                             },
                         ]}
                     />
                 </div>
-                <div className="charts"></div>
+                <div className="charts">
+                    <MonitorCharts monitorType={monitorType}></MonitorCharts>
+                </div>
             </div>
         </div>
     );
