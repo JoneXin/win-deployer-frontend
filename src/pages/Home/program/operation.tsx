@@ -5,7 +5,7 @@ import { ProgramVersion, programVersionColumns, tabItems } from './constan';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import NewDeployer from './newdeployer';
 import StatusManage from './statusmanage';
-import ConfigManage from './configmanage';
+import ConfigManage from './configmanage/configmanage';
 import LogManage from './logmanage';
 
 const ProgramOperation: FC = (props: any) => {
@@ -43,7 +43,11 @@ const ProgramOperation: FC = (props: any) => {
     const VersionMangement = () => (
         <>
             <div className="program-versions">
-                <Table columns={programVersionCols} rowKey={record => record.name} dataSource={programStore.selectProgramInfo?.versions.map((v: any, index) => ({ ...v, key: index }))} />
+                <Table
+                    columns={programVersionCols}
+                    rowKey={record => record.name}
+                    dataSource={programStore.selectProgramInfo?.versions.map((v: any, index) => ({ ...v, key: index }))}
+                />
             </div>
             ;
         </>

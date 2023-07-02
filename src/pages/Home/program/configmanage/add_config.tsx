@@ -8,7 +8,7 @@ import { addProgramListApi } from '@/api/program';
 import { programStore } from '@/stores/mobx';
 
 // 新增发布
-const NewProgram: FC = (props: any, ref) => {
+const AddConfig: FC = (props: any, ref) => {
     const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);
     const [configList, setConfigList] = useState([]);
@@ -24,21 +24,6 @@ const NewProgram: FC = (props: any, ref) => {
 
     const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);
-    };
-
-    const uploadProps: UploadProps = {
-        name: 'file',
-        action: `/api/program/upload`,
-        onChange(info) {
-            if (info.file.status !== 'uploading') {
-                console.log(info.file, info.fileList);
-            }
-            if (info.file.status === 'done') {
-                message.success(`${info.file.name} 上传成功!`);
-            } else if (info.file.status === 'error') {
-                message.error(`${info.file.name}  上传失败!`);
-            }
-        },
     };
 
     const showJsonEditorModalRef = (idx: number) => {
@@ -88,7 +73,7 @@ const NewProgram: FC = (props: any, ref) => {
             maskClosable={false}
             ref={modalRef}
             handleOk={addProgram}
-            title="新增应用"
+            title="新增配置"
             handleCancel={() => form.resetFields()}
         >
             {contextHolder}
@@ -104,90 +89,6 @@ const NewProgram: FC = (props: any, ref) => {
                     onFinishFailed={onFinishFailed}
                     autoComplete="off"
                 >
-                    <Form.Item
-                        valuePropName="programPkg"
-                        getValueFromEvent={(e: any) => {
-                            if (Array.isArray(e)) {
-                                return e;
-                            }
-                            return e?.fileList;
-                        }}
-                        label="程序包"
-                        name="programPkg"
-                        rules={[{ required: true, message: '请上传程序包' }]}
-                    >
-                        <Upload {...uploadProps}>
-                            <Button icon={<UploadOutlined rev={undefined} />}>程序包上传</Button>
-                        </Upload>
-                    </Form.Item>
-
-                    <Form.Item
-                        label="版本名"
-                        name="versionName"
-                        initialValue={'0.0.1'}
-                        rules={[{ required: true, message: '请输入版本名' }]}
-                    >
-                        <Input />
-                    </Form.Item>
-
-                    <Form.Item
-                        label="发布路径"
-                        name="deployPath"
-                        initialValue={'D:/hzleaper_auto_install'}
-                        rules={[{ required: true, message: '请输入发布路径' }]}
-                    >
-                        <Input />
-                    </Form.Item>
-
-                    <Form.Item
-                        label="入口文件路径"
-                        initialValue={'/bin/www'}
-                        name="execPath"
-                        rules={[{ required: true, message: '请输入入口文件路径' }]}
-                    >
-                        <Input />
-                    </Form.Item>
-
-                    <Form.Item
-                        label="最大重启次数"
-                        name="maxRestarts"
-                        initialValue={9999}
-                        rules={[{ required: true, message: '请输入最大重启次数' }]}
-                    >
-                        <Input />
-                    </Form.Item>
-
-                    <Form.Item
-                        label="最大重试次数"
-                        name="maxRetries"
-                        initialValue={9999}
-                        rules={[{ required: true, message: '请输入最大重试次数' }]}
-                    >
-                        <Input />
-                    </Form.Item>
-
-                    <Form.Item
-                        label="重启延迟"
-                        name="wait"
-                        initialValue={3}
-                        rules={[{ required: true, message: '请输入重启延迟' }]}
-                    >
-                        <Input />
-                    </Form.Item>
-
-                    <Form.Item
-                        label="重启延迟增量"
-                        name="grow"
-                        initialValue={0}
-                        rules={[{ required: true, message: '请输入重启延迟增量' }]}
-                    >
-                        <Input />
-                    </Form.Item>
-
-                    <Form.Item label="备注信息" name="desc" rules={[{ required: false }]}>
-                        <Input.TextArea />
-                    </Form.Item>
-
                     <Form.List name="config">
                         {(fields, { add, remove }) => (
                             <>
@@ -236,4 +137,4 @@ const NewProgram: FC = (props: any, ref) => {
         </RenModal>
     );
 };
-export default forwardRef(NewProgram as any) as any;
+export default forwardRef(AddConfig as any) as any;

@@ -53,7 +53,7 @@ const Program: FC = () => {
     });
 
     return (
-        <div>
+        <div style={{ backgroundColor: 'white' }}>
             {contextHolder}
 
             <div className="search-bar">
@@ -77,7 +77,12 @@ const Program: FC = () => {
                     dataSource={programStore.programList.map((v: any, index) => ({ ...v, key: index }))}
                 />
             </div>
-            <RenModal width={1000} ref={programDetailModalRef} title="程序详情" footer={[<Button onClick={hideProgramDetailModal}>关闭</Button>]}>
+            <RenModal
+                width={1000}
+                ref={programDetailModalRef}
+                title="程序详情"
+                footer={[<Button onClick={hideProgramDetailModal}>关闭</Button>]}
+            >
                 <ProgramOperation></ProgramOperation>
             </RenModal>
 

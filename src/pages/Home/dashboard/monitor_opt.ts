@@ -10,7 +10,6 @@ export const memoryOption = {
         //     return [pt[0], '10%'];
         // },
         formatter: function (data: Array<any>) {
-            console.log(data[0], '===');
             let str = `时间：${data[0]?.axisValue}<br/>`;
             data.forEach(v => {
                 str += `${v.seriesName}: ${v.data > 1024 ? (v.data / 1024).toFixed(2) : v.data} ${
@@ -28,7 +27,7 @@ export const memoryOption = {
         containLabel: true,
     },
     title: {
-        text: '近一周内存占用',
+        // text: '近一周内存占用',
     },
     toolbox: {
         feature: {
@@ -117,12 +116,11 @@ export const memoryOption = {
  */
 export const cpuOption = {
     title: {
-        text: '近一周的CPU占用',
+        // text: '近一周的CPU占用',
     },
     tooltip: {
         trigger: 'axis',
         formatter: function (data: Array<any>) {
-            console.log(data[0], '===');
             let str = `时间：${data[0]?.axisValue}<br/>`;
             data.forEach(v => {
                 str += `${v.seriesName}: ${v.data}%<br/>`;
@@ -132,7 +130,7 @@ export const cpuOption = {
         },
     },
     legend: {
-        data: ['系统CPU使用率', '进程CPU使用率'],
+        data: ['系统CPU占用', '进程CPU占用'],
     },
     grid: {
         left: '3%',

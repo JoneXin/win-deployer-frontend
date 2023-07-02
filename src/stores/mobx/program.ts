@@ -1,5 +1,7 @@
+import { MonitorQueryType, getProcessMonitorData } from '@/api/monitor';
 import { getProgramListApi } from '@/api/program';
 import { ProgramDataType } from '@/pages/Home/program/constan';
+import { transformTime } from '@/utils/tool/tool';
 import { message } from 'antd';
 import { makeAutoObservable, runInAction } from 'mobx';
 
@@ -34,45 +36,9 @@ const programStore = makeAutoObservable({
      * 选中程序的monitor数据
      */
     slectProgramMonitor: {
-        cpu: [
-            {
-                cpuProcessUsed: 5.12,
-                cpuUsed: 81.23,
-                time: '2022/5/2 09:20:21',
-            },
-            {
-                cpuProcessUsed: 4.12,
-                cpuUsed: 89.12,
-                time: '2022/5/2 09:30:21',
-            },
-            {
-                cpuProcessUsed: 3.12,
-                cpuUsed: 92.16,
-                time: '2022/5/2 09:40:21',
-            },
-        ],
-        memory: [
-            {
-                memoryProccessUsed: 645,
-                memorySum: 16000,
-                memoryUsed: 12001,
-                time: '2022/5/2 09:20:21',
-            },
-            {
-                memoryProccessUsed: 545,
-                memorySum: 16000,
-                memoryUsed: 11001,
-                time: '2022/5/2 09:20:21',
-            },
-            {
-                memoryProccessUsed: 415,
-                memorySum: 16000,
-                memoryUsed: 10001,
-                time: '2022/5/2 09:20:21',
-            },
-        ],
+        cpu: [],
+        memory: [],
     } as MonitorType,
-
     async getProgramList() {
         try {
             this.programList = await getProgramListApi();
@@ -83,6 +49,16 @@ const programStore = makeAutoObservable({
     },
     setProgramInfo(info: ProgramDataType) {
         this.selectProgramInfo = info;
+    },
+    /**
+     * 获取指定时间范围类，指定proccess监控数据
+     */
+    async getMonitorData(param: MonitorQueryType) {
+        const monitorData = await getProcessMonitorData(param);
+        this.slectProgramMonitor = {
+            cpu: monitorData.cpu.map((v: any) => ({ ...v, time: transformTime(v.time) })),
+            memory: monitorData.memory.map((v: any) => ({ ...v, time: transformTime(v.time) })),
+        };
     },
 });
 

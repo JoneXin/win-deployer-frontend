@@ -46,7 +46,9 @@ const LogManage: FC = () => {
 
     const getlogsPath = (logType: string): string => {
         const transformdScript = programStore.selectProgramInfo.script.replaceAll('\\', '/');
-        return `${transformdScript.slice(0, transformdScript.lastIndexOf('/'))}/daemon/${programStore.selectProgramInfo.name}.${logType}.log`;
+        return `${transformdScript.slice(0, transformdScript.lastIndexOf('/'))}/daemon/${
+            programStore.selectProgramInfo.name
+        }.${logType}.log`;
     };
 
     return (
@@ -71,6 +73,10 @@ const LogManage: FC = () => {
                 </Button>
             </div>
             <div className="new-deployer-nav" style={{ height: 30 }}>
+                <span>支持日志格式:</span>
+                <span style={{ marginLeft: 10, color: 'grey' }}>YYYY-MM-DD HH:mm:SS 日志内容</span>
+            </div>
+            <div className="new-deployer-nav" style={{ height: 30 }}>
                 <span>日志地址:</span>
                 <span style={{ marginLeft: 10, color: 'red' }}>{getlogsPath(logType)}</span>
             </div>
@@ -81,10 +87,21 @@ const LogManage: FC = () => {
             </div> */}
             <Spin spinning={loading}>
                 <div className="logs" style={{ margin: ' 10px 0px' }}>
-                    <List size="small" bordered dataSource={logsContentList} renderItem={item => <List.Item>{item}</List.Item>} />
+                    <List
+                        size="small"
+                        bordered
+                        dataSource={logsContentList}
+                        renderItem={item => <List.Item>{item}</List.Item>}
+                    />
                 </div>
                 <div className="footer-logs">
-                    <Pagination showQuickJumper showSizeChanger defaultCurrent={1} total={logsPageNumCount} onChange={changePageInfo} />
+                    <Pagination
+                        showQuickJumper
+                        showSizeChanger
+                        defaultCurrent={1}
+                        total={logsPageNumCount}
+                        onChange={changePageInfo}
+                    />
                 </div>
             </Spin>
         </>

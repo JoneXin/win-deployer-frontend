@@ -18,6 +18,7 @@ import {
 import { LineChart } from 'echarts/charts';
 import { LabelLayout, UniversalTransition } from 'echarts/features';
 import { CanvasRenderer } from 'echarts/renderers';
+import './index.less';
 
 echarts.use([
     TitleComponent,
@@ -83,15 +84,13 @@ const MonitorCharts: FC<MonitorChartsProps> = (props: MonitorChartsProps) => {
     };
 
     const setMemoryData = (data: Array<MemoryMonitorType>, options: any, charts: echarts.ECharts) => {
-        console.log(monitorCharts, '-==');
-
         options.xAxis.data = data.map(v => v.time);
         options.series[0].data = data.map(v => v.memoryUsed);
         options.series[1].data = data.map(v => v.memoryProccessUsed);
-        options.yAxis.max = data[0].memorySum;
+        options.yAxis.max = data[0]?.memorySum || 0;
         charts.setOption(options, true);
     };
 
-    return <div style={{ width: '100%', height: '100%' }} ref={chartsRef}></div>;
+    return <div className="monitor-charts" ref={chartsRef}></div>;
 };
 export default observer(MonitorCharts) as FC<MonitorChartsProps>;

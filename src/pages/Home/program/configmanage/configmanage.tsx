@@ -1,9 +1,16 @@
-import { restartServiceApi, startServiceApi, stopServiceApi, uninstallServiceApi, updateConfigApi, updateRunningAppConfApi } from '@/api/program';
+import {
+    restartServiceApi,
+    startServiceApi,
+    stopServiceApi,
+    uninstallServiceApi,
+    updateConfigApi,
+    updateRunningAppConfApi,
+} from '@/api/program';
 import JsonEditor from '@/components/JsonEditor';
 import { programStore } from '@/stores/mobx';
 import { Button, Collapse, message, Popconfirm, Spin, Tag } from 'antd';
 import react, { FC, useState } from 'react';
-import { statusColor } from './constan';
+import { statusColor } from '../constan';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 const { Panel } = Collapse;
 const ConfigManage: FC = (props: any) => {
@@ -13,6 +20,8 @@ const ConfigManage: FC = (props: any) => {
     const onChange = (key: string | string[]) => {
         console.log(key);
     };
+
+    const addConfig = () => {};
 
     const saveConfig = async () => {
         try {
@@ -54,8 +63,11 @@ const ConfigManage: FC = (props: any) => {
             <Spin spinning={loading}>
                 <div className="new-deployer-nav">
                     <span>操作: </span>
+                    <Button type="primary" style={{ marginLeft: 15 }} onClick={addConfig}>
+                        新增配置
+                    </Button>
                     <Button type="primary" style={{ marginLeft: 15 }} onClick={saveConfig}>
-                        存储配置
+                        保存配置
                     </Button>
 
                     <Popconfirm
@@ -75,7 +87,10 @@ const ConfigManage: FC = (props: any) => {
                     {Array.isArray(programStore?.selectProgramInfo?.config) &&
                         programStore.selectProgramInfo?.config?.map((conf, idx) => (
                             <Panel header={conf.configPath} key={idx}>
-                                <JsonEditor mode={conf.configPath.slice(conf.configPath.lastIndexOf('.'))} idx={idx}></JsonEditor>
+                                <JsonEditor
+                                    mode={conf.configPath.slice(conf.configPath.lastIndexOf('.'))}
+                                    idx={idx}
+                                ></JsonEditor>
                             </Panel>
                         ))}
                 </Collapse>
