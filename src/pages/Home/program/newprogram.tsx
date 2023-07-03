@@ -119,33 +119,27 @@ const NewProgram: FC = (props: any, ref) => {
                         <Upload {...uploadProps}>
                             <Button icon={<UploadOutlined rev={undefined} />}>程序包上传</Button>
                         </Upload>
+                        <span style={{ fontSize: 12, color: 'red' }}>支持 tar, gzip, tgz, zip类型的压缩包</span>
                     </Form.Item>
 
-                    <Form.Item
-                        label="版本名"
-                        name="versionName"
-                        initialValue={'0.0.1'}
-                        rules={[{ required: true, message: '请输入版本名' }]}
-                    >
-                        <Input />
+                    <Form.Item label="版本名" name="versionName" rules={[{ required: true, message: '请输入版本名' }]}>
+                        <Input placeholder="eg: 0.0.1" />
                     </Form.Item>
 
                     <Form.Item
                         label="发布路径"
                         name="deployPath"
-                        initialValue={'D:/hzleaper_auto_install'}
                         rules={[{ required: true, message: '请输入发布路径' }]}
                     >
-                        <Input />
+                        <Input placeholder="eg: D:/hzleaper_auto_install" />
                     </Form.Item>
 
                     <Form.Item
                         label="入口文件路径"
-                        initialValue={'/bin/www'}
                         name="execPath"
                         rules={[{ required: true, message: '请输入入口文件路径' }]}
                     >
-                        <Input />
+                        <Input placeholder="相对于程序的路径 eg: /bin/www" />
                     </Form.Item>
 
                     <Form.Item
@@ -200,7 +194,7 @@ const NewProgram: FC = (props: any, ref) => {
                                             label="文件路径"
                                             rules={[{ required: true, message: '请输入配置文件路径' }]}
                                         >
-                                            <Input />
+                                            <Input placeholder="eg: /config/app.config.json" />
                                         </Form.Item>
                                         <Form.Item
                                             {...field}
@@ -209,7 +203,10 @@ const NewProgram: FC = (props: any, ref) => {
                                             label="文件内容:"
                                             rules={[{ required: true, message: '请输入配置文件内容' }]}
                                         >
-                                            <Input onDoubleClick={() => showJsonEditorModalRef(field.key)} />
+                                            <Input
+                                                placeholder="双击打开编辑器 支持.js和.json"
+                                                onDoubleClick={() => showJsonEditorModalRef(field.key)}
+                                            />
                                         </Form.Item>
                                         <MinusCircleOutlined onClick={() => remove(field.name)} rev={undefined} />
                                     </Space>
